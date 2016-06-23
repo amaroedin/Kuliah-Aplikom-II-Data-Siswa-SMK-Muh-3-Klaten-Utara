@@ -1,0 +1,39 @@
+*,
+*:after,
+*::before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin:0px;
+    padding:0px;
+}
+body{
+	font-size:12px;
+	font-family: 'Roboto', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+h1,h2,h3,h4,h5,h6{
+	margin:0;padding:0;
+}
+
+.container-login{
+    margin:0 auto;
+    margin-top:50px;
+    width:350px;
+    position: relative;
+}
+
+.input-bg{
+    position: relative;
+}
+.input-bg .icon{
+    position: absolute;
+    top:7px;left:10px;
+    font-size:20px;
+    color:#485156;
+}
+.input-bg .form-control{
+    padding-left: 35px;
+}
