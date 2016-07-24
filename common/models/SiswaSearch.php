@@ -22,7 +22,7 @@ class SiswaSearch extends Siswa
     {
         return [
             [['jenis_kelamin', 'golongan_darah', 'status_kps'], 'string'],
-            [['id_ref_agama', 'id_desa', 'id_ref_asal_sekolah', 'jumlah_saudara', 'id_orangtua_wali', 'id_status_tinggal', 'id_ref_jurusan', 'id_user'], 'integer'],
+            [['id_ref_agama', 'id_desa', 'id_ref_asal_sekolah', 'jumlah_saudara', 'id_orangtua_wali', 'id_ref_jurusan', 'id_user'], 'integer'],
             [['nis', 'nama', 'keyword'], 'safe'],
             [['tinggi_badan', 'berat_badan'], 'number']
         ];

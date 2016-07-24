@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "{{%kecamatan}}".
@@ -67,9 +68,9 @@ class Kecamatan extends \yii\db\ActiveRecord
         return $this->hasOne(Kabupaten::className(), ['id' => 'id_kabupaten']);
     }
 
-    public function getOptionsbyKabupaten($id_kabupaten)
+    public static function getOptionsbyKabupaten($kode)
     {
-        $data = parent::find()->where(['id_kabupaten' => $id_kabupaten])->select(['id', 'nama as name'])->asArray()->all();
+        $data = parent::find()->where(['LEFT(kode, 4)' => $kode])->select(['id', 'nama as name'])->asArray()->all();
         $value = (count($data) == 0) ? '' : $data;
 
         return $value;

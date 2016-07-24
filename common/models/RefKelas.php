@@ -70,4 +70,19 @@ class RefKelas extends \yii\db\ActiveRecord
     {
         return $this->hasMany(SiswaMutasi::className(), ['id_ref_kelas' => 'id']);
     }
+
+    public function beforeSave($insert)
+    {
+        if(parent::beforeSave($insert)) {
+            $this->nomor_urut = $this->getLastKelasJurusan($this->id_ref_jurusan);
+            return true;
+        }
+
+        return false;
+    }
+
+    public function getLastKelasJurusan($id_ref_jurusan)
+    {
+        return static::find()->where(['id_ref_jurusan' => $id_ref_jurusan])->count();
+    }
 }

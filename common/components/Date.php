@@ -84,6 +84,17 @@ class Date extends Component{
 	        return false;
 	    }
 	}
+
+	function list_tahun($min_tahun = null, $max_tahun = null, $options = array()) 
+    {
+        $min_tahun = $min_tahun ? $min_tahun : date("Y");
+        $max_tahun = $max_tahun ? $max_tahun : date("Y")-5;
+        for ($i = $min_tahun; $i > $max_tahun; $i--) {
+            $options[$i] = $i;
+        }    
+
+        return $options;
+    }
 }
 
 ?>

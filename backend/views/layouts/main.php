@@ -25,6 +25,18 @@ AppAsset::register($this);
 
 	<?= Html::csrfMetaTags() ?>
     <?php $this->head() ?>
+
+    <script language="javascript">
+        function delete_all(){
+            var list_id = '';
+            $('.checkbox_delete_all').each(function(){
+                if($(this).is(":checked")){
+                    list_id = list_id + '.' + $(this).attr('id')
+                }
+            });
+            window.location.href='<?=Yii::$app->getUrlManager()->createUrl(Yii::$app->controller->id.'/delete_all');?>?list_id=' + list_id;
+        }
+    </script>
 </head>
 <body class="sidebar-mini skin-red fixed">
 	<?php $this->beginBody() ?>

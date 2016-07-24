@@ -12,7 +12,7 @@ use yii\widgets\Pjax;
 		<div class="box-header">
 			<div class="pull-left">
 				<?= Html::a('<i class="fa fa-plus"></i> Tambah Data', ['create'], ['class' => 'btn btn-success btn-sm']);?>
-				<?= Html::a('Hapus Data', ['delete_all'], ['class' => 'btn btn-danger btn-sm confirmation btn_delete_all']);?>
+				<?= Html::a('Hapus Data', 'javascript:delete_all()', ['class' => 'btn btn-danger btn-sm confirmation btn_delete_all']);?>
 			</div>
 			<div class="pull-right">
 				<?= $this->render('_search', [

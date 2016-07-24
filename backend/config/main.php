@@ -20,6 +20,9 @@ return [
         'date' => [
             'class' => 'common\components\Date'
         ],
+        'angka' => [
+            'class' => 'common\components\Angka'
+        ],
         'request' => [
     		'baseUrl' => $baseUrl,
     	],

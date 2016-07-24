@@ -4,6 +4,7 @@ namespace backend\controllers;
 use Yii;
 use common\models\Siswa;
 use common\models\SiswaSearch;
+use common\models\SiswaOrangtuaWali;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -82,23 +83,31 @@ class SiswaController extends Controller
         $back_url  = $this->getBackUrl();
 
         $model = new Siswa();
+        $modelOrtu = new SiswaOrangtuaWali();
         // $model->scenario = 'create';
 
         if ($model->load(Yii::$app->request->post())) {
-            
             if(Yii::$app->request->isAjax){
                 Yii::$app->response->format = 'json';
                 return \yii\bootstrap\ActiveForm::validate($model);
             }
 
-            if($model->save()){
-                Yii::$app->session->setFlash('noticeSuccess', 'Data berhasil disimpan');
-                unset(Yii::$app->session['keyword_' . $this->controller_id]);
-                return $this->redirect([$this->controller_id.'/index?sort=-id']);
+            $modelOrtu->attributes = $_POST['SiswaOrangtuaWali'];
+            if($modelOrtu->save()) {
+                $model->id_user             = Yii::$app->user->identity->id;
+                $model->id_orangtua_wali    = $modelOrtu->id;
+                $model->attributes          = $_POST['Siswa'];
+
+                if($model->save()){
+                    Yii::$app->session->setFlash('noticeSuccess', 'Data berhasil disimpan');
+                    unset(Yii::$app->session['keyword_' . $this->controller_id]);
+                    return $this->redirect([$this->controller_id.'/index?sort=-id']);
+                }   
             }
         }
 
         $data['model'] = $model;
+        $data['modelOrtu'] = $modelOrtu;
         $data['back_url'] = $back_url;
         
         return $this->render('form', $data);
@@ -110,6 +119,7 @@ class SiswaController extends Controller
         $back_url  = $this->getBackUrl();
 
         $model = $this->findModel($id);
+        $modelOrtu = $this->findModelOrtu($model->id_orangtua_wali);
 
         if ($model->load(Yii::$app->request->post())) {
             
@@ -125,6 +135,7 @@ class SiswaController extends Controller
         }
 
         $data['model'] = $model;
+        $data['modelOrtu'] = $modelOrtu;
         $data['back_url'] = $back_url;
         
         return $this->render('form', $data);
@@ -133,6 +144,15 @@ class SiswaController extends Controller
     protected function findModel($id)
     {
         if (($model = Siswa::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('Halaman tidak ditemukan');
+        }
+    }
+
+    protected function findModelOrtu($id)
+    {
+        if (($model = SiswaOrangtuaWali::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('Halaman tidak ditemukan');

@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "{{%desa}}".
@@ -65,5 +66,13 @@ class Desa extends \yii\db\ActiveRecord
     public function getSiswas()
     {
         return $this->hasMany(Siswa::className(), ['id_desa' => 'id']);
+    }
+
+    public static function getOptionsbyKecamatan($id_kecamatan)
+    {
+        $data = parent::find()->where(['id_kecamatan' => $id_kecamatan])->select(['id', 'nama as name'])->asArray()->all();
+        $value = (count($data) == 0) ? '' : $data;
+
+        return $value;
     }
 }

@@ -9,6 +9,7 @@ return [
 	'current_menu' => '',
 
 	// Options
-	'list_tingkatan' => ['X' => 'X', 'XI' => 'XI', 'XII' => 'XII'],
-	'list_jenis_kelamin' => ['L' => 'Laki - Laki', 'P' => 'Perempuan']
+	'list_tingkatan' => ['10' => 'X', '11' => 'XI', '12' => 'XII'],
+	'list_jenis_kelamin' => ['L' => 'Laki - Laki', 'P' => 'Perempuan'],
+	'list_status' => ['Tidak', 'Ya']
 ];
