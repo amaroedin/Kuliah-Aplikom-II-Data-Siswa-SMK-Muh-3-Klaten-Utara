@@ -17,6 +17,9 @@ use common\models\RefJenisTinggal;
 use common\models\RefAlatTransportasi;
 use common\models\RefPendidikan;
 use common\models\RefPenghasilan;
+use common\models\RefJenisKartuBsm;
+use common\models\RefKelas;
+use common\models\RefTahunAjaran;
 
 // default selected options
 $model->id_provinsi = Yii::$app->params['default_kode_provinsi'];
@@ -36,6 +39,9 @@ $list_alat_transportasi = ArrayHelper::map(RefAlatTransportasi::find()->asArray(
 $list_pendidikan = ArrayHelper::map(RefPendidikan::find()->asArray()->all(), 'id', 'nama');
 $list_penghasilan = ArrayHelper::map(RefPenghasilan::find()->asArray()->all(), 'id', 'nominal');
 $list_jurusan = ArrayHelper::map(RefJurusan::find()->asArray()->all(), 'id', 'nama');
+$list_jenis_kartu = ArrayHelper::map(RefJenisKartuBsm::find()->asArray()->all(), 'id', 'nama');
+$list_kelas = ArrayHelper::map(RefKelas::find()->asArray()->all(), 'id', 'nama');
+$list_tahun_ajaran = ArrayHelper::map(RefTahunAjaran::find()->asArray()->all(), 'id', 'periode');
 
 ?>
 
@@ -64,7 +70,40 @@ $list_jurusan = ArrayHelper::map(RefJurusan::find()->asArray()->all(), 'id', 'na
 				    	</div>
 				    </div>
 
-				    <?= $form->errorSummary($model); ?>
+				    <?php// = $form->errorSummary($model); ?>
+
+				    <?= $form->field($model, 'id_tahun_ajaran')->widget(Select2::classname(), [
+	                    'data' => $list_tahun_ajaran,
+	                    'options' => [
+	                        'placeholder' => 'Pilih Tahun Ajaran', 
+	                        'class' => 'form-control md-input',
+	                    ],
+	                    'pluginOptions' => [
+	                    	'width' => '200px'
+	                    ]
+	                ]);?>
+
+				    <?= $form->field($model, 'id_kelas')->widget(Select2::classname(), [
+	                    'data' => $list_kelas,
+	                    'options' => [
+	                        'placeholder' => 'Pilih Kelas', 
+	                        'class' => 'form-control md-input',
+	                    ],
+	                    'pluginOptions' => [
+	                    	'width' => '200px'
+	                    ]
+	                ]);?>
+
+				    <?= $form->field($model, 'id_ref_jurusan')->widget(Select2::classname(), [
+	                    'data' => $list_jurusan,
+	                    'options' => [
+	                        'placeholder' => 'Pilih Jurusan', 
+	                        'class' => 'form-control md-input',
+	                    ],
+	                    'pluginOptions' => [
+	                    	'width' => '200px'
+	                    ]
+	                ]);?>
 
 				    <?= $form->field($model, 'nis')->textInput(['class' => 'form-control', 'style' => 'width:300px;']); ?>
 				    <?= $form->field($model, 'nisn')->textInput(['class' => 'form-control', 'style' => 'width:300px;']); ?>
@@ -187,6 +226,17 @@ $list_jurusan = ArrayHelper::map(RefJurusan::find()->asArray()->all(), 'id', 'na
 	                    ]
 	                ]);?>
 	                <?= $form->field($model, 'nomor_kps')->textInput(['class' => 'form-control', 'style' => 'width:250px;']);?>
+				    <?= $form->field($model, 'id_jenis_kartu_bsm')->widget(Select2::classname(), [
+	                    'data' => $list_jenis_kartu,
+	                    'options' => [
+	                        'placeholder' => 'Pilih Jenis Kartu', 
+	                        'class' => 'form-control md-input'
+	                    ],
+	                    'pluginOptions' => [
+	                    	'width' => '200px'
+	                    ]
+	                ]);?>
+	                <?= $form->field($model, 'nomor_kartu_bsm')->textInput(['class' => 'form-control', 'style' => 'width:250px;']);?>
 				    <?= $form->field($model, 'id_ref_asal_sekolah')->widget(Select2::classname(), [
 	                    'data' => $list_asal_sekolah,
 	                    'options' => [
@@ -197,18 +247,9 @@ $list_jurusan = ArrayHelper::map(RefJurusan::find()->asArray()->all(), 'id', 'na
 	                    	'width' => '300px'
 	                    ]
 	                ]);?>
+	                <?= $form->field($model, 'nomor_peserta_un_smp')->textInput(['class' => 'form-control', 'style' => 'width:250px;']);?>
 	                <?= $form->field($model, 'nomor_skhun')->textInput(['class' => 'form-control', 'style' => 'width:250px;']);?>
-	                <?= $form->field($model, 'id_ref_jurusan')->widget(Select2::classname(), [
-	                    'data' => $list_jurusan,
-	                    'options' => [
-	                        'placeholder' => 'Pilih Jurusan', 
-	                        'class' => 'form-control md-input',
-	                    ],
-	                    'pluginOptions' => [
-	                    	'width' => '200px'
-	                    ]
-	                ]);?>
-
+	                
 	                <div class="form-group">
 				    	<div class="col-sm-9">
 				    		<label class="label-control"><h3>Data Ayah</h3></label>
@@ -340,3 +381,9 @@ $list_jurusan = ArrayHelper::map(RefJurusan::find()->asArray()->all(), 'id', 'na
 			</div>
 		</div>
 	</div>
+
+	<script type="text/javascript">
+		$(function(){
+
+		});
+	</script>

@@ -85,4 +85,12 @@ class RefKelas extends \yii\db\ActiveRecord
     {
         return static::find()->where(['id_ref_jurusan' => $id_ref_jurusan])->count();
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSiswas()
+    {
+        return $this->hasMany(Siswa::className(), ['id_kelas' => 'id']);
+    }
 }

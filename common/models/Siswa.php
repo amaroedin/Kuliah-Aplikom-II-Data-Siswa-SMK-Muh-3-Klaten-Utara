@@ -71,9 +71,9 @@ class Siswa extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nis', 'nisn', 'nama', 'jenis_kelamin', 'id_ref_agama', 'tempat_lahir', 'tanggal_lahir', 'alamat', 'id_desa', 'no_telpon', 'id_ref_asal_sekolah', 'id_ref_alat_transportasi', 'id_ref_jenis_tinggal', 'id_ref_jurusan'], 'required'],
-            [['jenis_kelamin', 'golongan_darah', 'status_kps'], 'string'],
-            [['id_ref_agama', 'id_desa', 'id_ref_asal_sekolah', 'jumlah_saudara', 'kebutuhan_khusus', 'id_ref_alat_transportasi', 'id_ref_jenis_tinggal', 'id_orangtua_wali', 'id_ref_jurusan', 'id_user', 'status'], 'integer'],
+            [['nis', 'nisn', 'nama', 'jenis_kelamin', 'id_ref_agama', 'tempat_lahir', 'tanggal_lahir', 'alamat', 'id_desa', 'no_telpon', 'id_ref_asal_sekolah', 'id_ref_alat_transportasi', 'id_ref_jenis_tinggal', 'id_ref_jurusan', 'nomor_skhun', 'nomor_peserta_un_smp', 'id_kelas', 'id_tahun_ajaran'], 'required'],
+            [['jenis_kelamin', 'golongan_darah', 'status_kps', 'nomor_kartu_bsm', 'nomor_peserta_un_smp'], 'string'],
+            [['id_ref_agama', 'id_desa', 'id_ref_asal_sekolah', 'jumlah_saudara', 'kebutuhan_khusus', 'id_ref_alat_transportasi', 'id_ref_jenis_tinggal', 'id_orangtua_wali', 'id_ref_jurusan', 'id_user', 'status', 'id_jenis_kartu_bsm', 'id_kelas', 'id_tahun_ajaran'], 'integer'],
             [['tanggal_lahir', 'id_provinsi', 'id_kabupaten'], 'safe'],
             [['tinggi_badan', 'berat_badan'], 'number'],
             [['nis', 'kode_pos'], 'string', 'max' => 8],
@@ -124,12 +124,18 @@ class Siswa extends \yii\db\ActiveRecord
             'id_ref_jenis_tinggal' => 'Jenis Tinggal',
             'id_orangtua_wali' => 'Orangtua / Wali',
             'id_ref_jurusan' => 'Jurusan',
+            'id_kelas' => 'Kelas',
+            'id_tahun_ajaran' => 'Tahun Ajaran',
             'foto' => 'Foto',
             'id_user' => 'Id User',
             'status' => 'Status',
             'id_provinsi' => 'Provinsi',
             'id_kabupaten' => 'Kabupaten',
-            'idKecamatan' => 'Kecamatan'
+            'idKecamatan' => 'Kecamatan',
+            'status_kartu_bsm' => 'Status Kartu',
+            'id_jenis_kartu_bsm' => 'Jenis Kartu',
+            'nomor_kartu_bsm' => 'Nomor Kartu BSM',
+            'nomor_peserta_un_smp' => 'Nomor Peserta UN SMP'
         ];
     }
 
@@ -139,6 +145,14 @@ class Siswa extends \yii\db\ActiveRecord
     public function getIdRefAgama()
     {
         return $this->hasOne(RefAgama::className(), ['id' => 'id_ref_agama']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIdJenisKartuBsm()
+    {
+        return $this->hasOne(RefJenisKartuBsm::className(), ['id' => 'id_jenis_kartu_bsm']);
     }
 
     /**

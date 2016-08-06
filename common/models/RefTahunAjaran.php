@@ -60,6 +60,14 @@ class RefTahunAjaran extends \yii\db\ActiveRecord
         return $this->hasMany(SiswaMutasi::className(), ['id_ref_tahun_ajaran' => 'id']);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSiswas()
+    {
+        return $this->hasMany(Siswa::className(), ['id_tahun_ajaran' => 'id']);
+    }
+
     public function beforeSave()
     {
         $this->tanggal_awal     = !Yii::$app->date->valid_tanggal($this->tanggal_awal) ? Yii::$app->date->konversi_tanggal($this->tanggal_awal) : $this->tanggal_awal;

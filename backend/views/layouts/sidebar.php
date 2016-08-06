@@ -72,7 +72,7 @@
 			            	'url' => ['/siswa/clear'],
 			            ],
 
-			            [
+			            /*[
 			            	'label' => 'Presensi',
 			            	'url' => ['/presensi/clear'],
 			            ],
@@ -80,7 +80,7 @@
 			            [
 			            	'label' => 'Mutasi',
 			            	'url' => ['/mutasi/clear'],
-			            ]
+			            ]*/
 	            	]
 	            ],
 
