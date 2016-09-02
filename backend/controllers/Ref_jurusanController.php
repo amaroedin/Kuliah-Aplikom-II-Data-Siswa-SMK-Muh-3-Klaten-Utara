@@ -50,7 +50,7 @@ class Ref_jurusanController extends Controller
     public function init(){
         parent::init();
         
-        Yii::$app->params['current_menu'] = '<i class="fa fa-cubes"></i> Jurusan';
+        Yii::$app->params['current_menu'] = '<i class="fa fa-gears"></i> Jurusan';
         $this->addBreadCrumb('Pengaturan', '#');
         $this->addBreadCrumb('Jurusan', $this->controller_id);
     }

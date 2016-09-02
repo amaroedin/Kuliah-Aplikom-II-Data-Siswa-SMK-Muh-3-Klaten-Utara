@@ -50,7 +50,7 @@ class Ref_kelasController extends Controller
     public function init(){
         parent::init();
         
-        Yii::$app->params['current_menu'] = '<i class="fa fa-cubes"></i> Kelas';
+        Yii::$app->params['current_menu'] = '<i class="fa fa-gears"></i> Kelas';
         $this->addBreadCrumb('Pengaturan', '#');
         $this->addBreadCrumb('Kelas', $this->controller_id);
     }

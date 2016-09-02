@@ -50,7 +50,7 @@ class Ref_tahun_ajaranController extends Controller
     public function init(){
         parent::init();
         
-        Yii::$app->params['current_menu'] = '<i class="fa fa-cubes"></i> Tahun Ajaran';
+        Yii::$app->params['current_menu'] = '<i class="fa fa-gears"></i> Tahun Ajaran';
         $this->addBreadCrumb('Pengaturan', '#');
         $this->addBreadCrumb('Tahun Ajaran', $this->controller_id);
     }

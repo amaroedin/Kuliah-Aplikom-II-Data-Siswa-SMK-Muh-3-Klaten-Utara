@@ -20,7 +20,7 @@
 	            ],
 
 	            [
-	            	'label' => '<i class="fa fa-cubes"></i>Pengaturan<span class="fa fa-angle-left pull-right"></span>',
+	            	'label' => '<i class="fa fa-gears"></i>Pengaturan<span class="fa fa-angle-left pull-right"></span>',
 	            	'url' => '#',
 	            	'options' => ['class' => 'treeview'],
 	            	'items' => [
